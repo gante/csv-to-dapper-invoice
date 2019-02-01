@@ -4,7 +4,7 @@ A slightly dumbed-down version of the [Dapper Invoice](https://github.com/mkropa
 but with CSV loading capabilities.
 
 <p align="center">
-  <img src=http://i.imgur.com/q78jtGu.png width="400"/>
+  <img src=http://i.imgur.com/q78jtGu.png width="600"/>
 </p>
 
 ### Generating an Invoice

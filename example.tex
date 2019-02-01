@@ -1,12 +1,10 @@
-\documentclass[letterpaper]{dapper-invoice}
-%\documentclass[letterpaper,currency=dollar]{dapper-invoice}
-%\documentclass[letterpaper,currency=euro]{dapper-invoice}
-%\documentclass[letterpaper,currency=pound]{dapper-invoice}
+% Remember: use XeLaTeX or LuaLaTex -> PDF
+\documentclass[currency=pound]{dapper-invoice}  %other currencies: dollar, euro
 
+%Defines some required variables
 \newcommand{\invoiceNo}{101}
 \newcommand{\balance}{137.50}
 \newcommand{\duein}{15}% days
-
 \newcommand{\me}{Your~Name}
 \newcommand{\clientName}{Sample~Client}
 
@@ -15,11 +13,19 @@
 \defaultfontfeatures{ Path = ./Fonts/ }
 \usepackage{fontawesome}
 
+%CSV reader packages
+\usepackage{datatool}
+\DTLsetseparator{,}
+\DTLloaddb{billing_csv}{billing.csv}
+
+
+
 \begin{document}
 
 \newfontface\mainLightItalic{OpenSans-LightItalic}
 \makeheader{Your\ \mainLightItalic Biz}{\invoiceNo}
 
+%Client-side header
 \twocolumnlayout{
     \begin{infoSection}
         \infoBox{Client}{\clientName \\
@@ -35,7 +41,9 @@
             {\small\color{subduedColor} due \duedate{\duein}}
         }
     \end{infoSection}
-}{
+}
+%Personal-side header
+{
     \begin{infoSection}
         \infoBox{\arrowtarget Payable To}{
             \me \\
@@ -51,23 +59,24 @@
 
 \addvspace{4ex}
 
+
+%The actual table
 \begin{hoursItemizationWithProject}
 
-    \lineitemp{2015/4/11}{2}{50}{Invoice}{
-        \item Discussed requirements with client}
+    \DTLforeach* 		%loop: for each row
+	{billing_csv}		% database label
+	{\Day=Day,\Hours=Hours,\Description=Description,\Rate=Rate,\Project=Project}		% assigns variable names to the columns
+	{		% Stuff to do for each iteration (row):
+	\lineitemp{\Day}{\Hours}{\Rate}{\Project}{
+	\item \Description}
+	}
 
-    \lineitemp{2015/4/11}{1.25}{50}{Invoice}{
-        \item Wrote Invoice in LaTeX}
-
-    \lineitemp{2015/4/11}{0.5}{50}{Invoice}{
-        \item Packaged Invoice in .cls file}
-
-    \beginsummary
-
-    \summaryline{Total}{\currencysym\formatcurrency{\InvoiceTotal}}
-
-    \summaryline{Paid}{\currencysym\formatcurrency{50}}
-    \summaryline{Balance Due}{\currencysym\formatcurrency{\balance}} % not really any math support (yet)
+	%End of the table
+	\\	%Don't delete this line, otherwise the next command will fail :)
+	\beginsummary
+	\summaryline{Total}{\currencysym\formatcurrency{\InvoiceTotal}}
+	\summaryline{Paid}{\currencysym\formatcurrency{50}}
+	\summaryline{Balance Due}{\currencysym\formatcurrency{\balance}} % not really any math support (yet)
 
 \end{hoursItemizationWithProject}
 
