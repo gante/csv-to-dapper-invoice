@@ -3,14 +3,18 @@
 A slightly dumbed-down version of the [Dapper Invoice](https://github.com/mkropat/dapper-invoice ),
 but with CSV loading capabilities.
 
-![Example Screenshot](http://i.imgur.com/q78jtGu.png)
+<p align="center">
+  <img src=http://i.imgur.com/q78jtGu.png width="400"/>
+</p>
 
 ### Generating an Invoice
 
 #### Filling the CSV
 
 Fill it in as any .csv file. Be careful with special characters like \# within
-the .csv, as they will generate an error if not input with the appropriate codification (e.g. \\\#)
+the .csv, as they will generate an error if not input with the appropriate codification (e.g. \\\#).
+
+Rule of thumb: if it works with LaTeX, you can put it in the CSV.
 
 #### Creating the Invoice
 
