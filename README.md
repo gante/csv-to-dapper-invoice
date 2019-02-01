@@ -9,21 +9,20 @@ but with CSV loading capabilities.
 
 ### Generating an Invoice
 
-#### Filling the CSV
+#### Filling in the CSV
 
 Fill it in as any .csv file. Be careful with special characters like \# within
 the .csv, as they will generate an error if not input with the appropriate codification (e.g. \\\#).
 
 Rule of thumb: if it works with LaTeX, you can put it in the CSV.
 
-#### Creating the Invoice
+#### Compiling the Invoice
 
 Open the .tex, edit the basic information, and compile (with XeLaTeX or LuaLaTeX).
 
 ### Documentation
 
 See [example.tex](example.tex) and [dapper-invoice.cls](dapper-invoice.cls) for details.
-
 
 ### Licensing
 
