@@ -1,6 +1,6 @@
 % dapper-invoice.cls -- a billable-hours invoice featuring style over substance
 
-\ProvidesClass{dapper-invoice}[2015/04/12]
+\ProvidesClass{dapper-invoice}[2010/02/01]
 \NeedsTeXFormat{LaTeX2e}
 \LoadClass[11pt]{article}
 
@@ -133,7 +133,7 @@
     \setcounter{colskipcount}{5}
     \setlength\LTleft{0pt}
     \setlength\LTright{0pt}
-    \begin{longtable}{c @{\hspace{1.5em}} p{.6\textwidth} r @{} l r r}
+    \begin{longtable}{c @{\hspace{1.5em}} p{.5\textwidth} r @{} l r r}
     \hline
     \noalign{\smallskip}
     {\itemizationHeaderStyle Date} &
@@ -158,7 +158,7 @@
     \setcounter{colskipcount}{6}
     \setlength\LTleft{0pt}
     \setlength\LTright{0pt}
-    \begin{longtable}{c c @{\hspace{1.5em}} p{.5\textwidth} r @{} l r r}
+    \begin{longtable}{c c @{\hspace{1.5em}} p{.45\textwidth} r @{} l r r}
     \hline
     \noalign{\smallskip}
     {\itemizationHeaderStyle Date} &
@@ -217,7 +217,7 @@
 
 \newcommand{\lineitem}[4]{
     {\itemizationRowStyle #1} &
-    \begin{minipage}[t]{.6\textwidth}
+    \begin{minipage}[t]{.5\textwidth}
         \begin{itemize}[leftmargin=0pt, labelsep=1pt, itemsep=0pt] \itemizationRowStyle #4 \end{itemize}
     \end{minipage} &
     {\itemizationRowStyle \@formatHoursLeft{#2}} &
@@ -231,7 +231,7 @@
 \newcommand{\lineitemp}[5]{
     {\itemizationRowStyle #1} &
     {\itemizationRowStyle #4} &
-    \begin{minipage}[t]{0.5\textwidth}
+    \begin{minipage}[t]{0.45\textwidth}
         \begin{itemize}[leftmargin=0pt, labelsep=1pt, itemsep=0pt] \itemizationRowStyle #5 \end{itemize}
     \end{minipage} &
     {\itemizationRowStyle \@formatHoursLeft{#2}} &
